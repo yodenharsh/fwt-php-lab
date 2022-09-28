@@ -1,7 +1,3 @@
-/dashboard
-
-
-/img
-
-
-/webalizer
+dashboard/
+img/
+webalizer/
