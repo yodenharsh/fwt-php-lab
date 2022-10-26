@@ -1,0 +1,17 @@
+{
+  "name": "woxsen/convert-from-excel-to-db-entry",
+  "description": "Converts an excel file to an entry in the database",
+  "autoload": {
+    "psr-4": {
+      "Woxsen\\ConvertFromExcelToDbEntry\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Harsh Morayya"
+    }
+  ],
+  "require": {
+    "phpoffice/phpspreadsheet": "^1.25"
+  }
+}
