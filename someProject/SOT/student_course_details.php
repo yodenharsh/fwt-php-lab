@@ -3,10 +3,10 @@
 use Phppot\DataSource;
 use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 
-require_once 'DataSource.php';
+require_once '../DataSource.php';
 $db = new DataSource();
 $conn = $db->getConnection();
-require_once('./vendor/autoload.php');
+require_once('../vendor/autoload.php');
 
 if (isset($_POST["import"])) {
 
@@ -19,7 +19,7 @@ if (isset($_POST["import"])) {
 
     if (in_array($_FILES["file"]["type"], $allowedFileType)) {
 
-        $targetPath = 'uploads/' . $_FILES['file']['name'];
+        $targetPath = '../uploads/' . $_FILES['file']['name'];
         move_uploaded_file($_FILES['file']['tmp_name'], $targetPath);
 
         $Reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
@@ -29,50 +29,39 @@ if (isset($_POST["import"])) {
         $spreadSheetAry = $excelSheet->toArray();
         $sheetCount = count($spreadSheetAry);
 
-        for ($i = 0; $i <= $sheetCount; $i++) {
-            $rollno = "";
+        for ($i = 1; $i <= $sheetCount; $i++) {
+            $subjectName = "";
             if (isset($spreadSheetAry[$i][0])) {
-                $rollno = mysqli_real_escape_string($conn, $spreadSheetAry[$i][0]);
+                $subjectName = mysqli_real_escape_string($conn, $spreadSheetAry[$i][0]);
             }
-            $name = "";
+            $subjectCode = "";
             if (isset($spreadSheetAry[$i][1])) {
-                $name = mysqli_real_escape_string($conn, $spreadSheetAry[$i][1]);
-            }
-            $batch = "";
-            if (isset($spreadSheetAry[$i][2])) {
-                $batch = mysqli_real_escape_string($conn, $spreadSheetAry[$i][2]);
-            }
-            $specialization = "";
-            if (isset($spreadSheetAry[$i][3])) {
-                $specialization = mysqli_real_escape_string($conn, $spreadSheetAry[$i][3]);
-            }
-            $email = "";
-            if (isset($spreadSheetAry[$i][4])) {
-                $email = mysqli_real_escape_string($conn, $spreadSheetAry[$i][4]);
+                $subjectCode = mysqli_real_escape_string($conn, $spreadSheetAry[$i][1]);
             }
             $semester = "";
-            if (isset($spreadSheetAry[$i][5])) {
-                $semester = mysqli_real_escape_string($conn, $spreadSheetAry[$i][5]);
+            if (isset($spreadSheetAry[$i][2])) {
+                $semester = mysqli_real_escape_string($conn, $spreadSheetAry[$i][2]);
             }
-            $phone = "";
-            if (isset($spreadSheetAry[$i][6])) {
-                $phone = mysqli_real_escape_string($conn, $spreadSheetAry[$i][6]);
+            $credits = "";
+            if (isset($spreadSheetAry[$i][3])) {
+                $credits = mysqli_real_escape_string($conn, $spreadSheetAry[$i][3]);
             }
-
-            if (!empty($name)) {
-                $query = "insert into  student_details_sot(S_roll,S_name,S_batch,S_specialization,S_email,S_semester,S_phone) values(?,?,?,?,?,?,?)";
-                $paramType = "sssssss";
+            $programCode = "";
+            if (isset($spreadSheetAry[$i][4])) {
+                $programCode = mysqli_real_escape_string($conn, $spreadSheetAry[$i][4]);
+            }
+            if (!empty($subjectCode)) {
+                $query = "insert into  student_course_details_sot(S_subject_name,S_subject_code,S_semester,S_credits,S_program_code) values(?,?,?,?,?)";
+                $paramType = "sssss";
                 $paramArray = array(
-                    $rollno,
-                    $name,
-                    $batch,
-                    $specialization,
-                    $email,
+                    $subjectName,
+                    $subjectCode,
                     $semester,
-                    $phone
+                    $credits,
+                    $programCode
                 );
                 $insertId = $db->insert($query, $paramType, $paramArray);
-                // $query = "insert into student_details_sot(S_roll,S_name,S_batch,S_specialization,S_email,S_semester_S_phone) values('" . $rollno . "','" . $name. "','" . $batch . "','" . $specialization. "','" . $email . "','" . $semester . "','" . $phone . "')";
+                // $query = "insert into student_course_details_sot(S_roll,S_name,S_batch,S_specialization,S_email,S_semester_S_phone) values('" . $rollno . "','" . $name. "','" . $batch . "','" . $specialization. "','" . $email . "','" . $semester . "','" . $phone . "')";
                 // $result = mysqli_query($conn, $query);
 
                 if ($insertId) {
@@ -161,12 +150,29 @@ if (isset($_POST["import"])) {
         div#response.display-block {
             display: block;
         }
+
+        .instructions {
+            margin-bottom: 12px;
+        }
     </style>
 </head>
 
 <body>
-    <h2>Upload student details</h2>
-
+    <h2>Upload Student Course Details</h2>
+    <div class="outer-container instructions">
+        <h3> Required Excel sheet format: </h3>
+        <ul>
+            <li>
+                <h3>Row layout:&emsp;&emsp; Subject name , Subject code , Semester , Credits , Program code</h3>
+            </li>
+            <li>
+                <h3>Actual Data should start from the second row and first column. No column and row headings </h3>
+            </li>
+            <li>
+                <button type="input" class="btn-submit"><a style="color:white;text-decoration:none;" href="/someProject/Template/Student_course_details.xlsx">Download spreadsheet template</a></button>
+            </li>
+        </ul>
+    </div>
     <div class="outer-container">
         <form action="" method="post" name="frmExcelImport" id="frmExcelImport" enctype="multipart/form-data">
             <div>
@@ -186,7 +192,7 @@ if (isset($_POST["import"])) {
 
 
     <?php
-    $sqlSelect = "SELECT * FROM student_details_sot";
+    $sqlSelect = "SELECT * FROM student_course_details_sot";
     $result = $db->select($sqlSelect);
     if (!empty($result)) {
     ?>
@@ -194,14 +200,11 @@ if (isset($_POST["import"])) {
         <table class='tutorial-table'>
             <thead>
                 <tr>
-                    <th>Roll no.</th>
-                    <th>Student name</th>
-                    <th>Batch</th>
-                    <th>Specialization</th>
-                    <th>E-mail</th>
+                    <th>Subject name</th>
+                    <th>Subject ID</th>
                     <th>Semester</th>
-                    <th>Phone no.</th>
-
+                    <th>Credits</th>
+                    <th>Program code</th>
                 </tr>
             </thead>
             <?php
@@ -209,13 +212,11 @@ if (isset($_POST["import"])) {
             ?>
                 <tbody>
                     <tr>
-                        <td><?php echo $row['S_roll']; ?></td>
-                        <td><?php echo $row['S_name']; ?></td>
-                        <td><?php echo $row['S_batch']; ?></td>
-                        <td><?php echo $row['S_specialization']; ?></td>
-                        <td><?php echo $row['S_email']; ?></td>
+                        <td><?php echo $row['S_subject_name']; ?></td>
+                        <td><?php echo $row['S_subject_code']; ?></td>
                         <td><?php echo $row['S_semester']; ?></td>
-                        <td><?php echo $row['S_phone']; ?></td>
+                        <td><?php echo $row['S_credits']; ?></td>
+                        <td><?php echo $row['S_program_code']; ?></td>
                     </tr>
                 <?php
             }
