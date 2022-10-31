@@ -22,10 +22,16 @@
         <nav class="main-nav mb-3">
             <ul class="main-nav__items">
                 <li class="main-nav__item">
-                    <button type=" button" class="btn btn-primary">Login</button>
+                    <a href="./index.php"><button type="button" class="btn btn-primary">Login</button></a>
                 </li>
                 <li class="main-nav__item">
-                    <button type="button" class="btn btn-primary">See existing trips</button>
+                    <a href="./new_trips.php"><button type="button" class="btn btn-primary">Book a trip</button></a>
+                </li>
+                <li class="main-nav__item">
+                    <button type="button" class="btn btn-primary">View existing trips</button>
+                </li>
+                <li class="main-nav__item">
+                    <a href="./logout.php"><button type="button" class="btn btn-danger">Logout</button></a>
                 </li>
         </nav>
     </header>

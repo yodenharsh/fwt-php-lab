@@ -8,4 +8,4 @@
 
 
 <label class="form-label mt-3" for="customFile">Upload identity proof as .png (Aadhar card/passport/student ID)</label>
-<input type="file" class="form-control" accept="image/x-png" id="customFile">
+<input name="image" type="file" class="form-control" accept="image/x-png" id="customFile">
