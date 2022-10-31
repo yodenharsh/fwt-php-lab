@@ -10,12 +10,10 @@ $(document).ready(function () {
   $("#terms-no").click(function () {
     $(".error-box").show("fast");
     $("#submit-btn").prop("disabled", true);
-    console.log("triggered");
   });
 
   $("#terms-yes").click(function () {
     $(".error-box").hide("fast");
     validInput();
-    console.log("triggered");
   });
 });
