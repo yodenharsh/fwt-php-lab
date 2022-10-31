@@ -28,7 +28,7 @@
                     <a href="./new_trips.php"><button type="button" class="btn btn-primary">Book a trip</button></a>
                 </li>
                 <li class="main-nav__item">
-                    <button type="button" class="btn btn-primary">View existing trips</button>
+                    <a href="./view_trips.php"><button type="button" class="btn btn-primary">View existing trips</button></a>
                 </li>
                 <li class="main-nav__item">
                     <a href="./logout.php"><button type="button" class="btn btn-danger">Logout</button></a>

@@ -30,10 +30,11 @@
             echo "<h2>Email address already exists</h2>";
         } else {
 
-            $addUserQuery = "INSERT INTO user_details VALUES('$email','$password')";
+            $addUserQuery = "INSERT INTO user_details VALUES('$email',MD5('$password'))";
             $conn->query($addUserQuery);
             $file_tmp = $_FILES['image']['tmp_name'];
             move_uploaded_file($file_tmp, "uploads/" . $email . ".png");
+            setcookie('email', $email);
             echo "<h2>Account created and automatically logged in</h2>";
         }
     }

@@ -10,7 +10,7 @@
                 <li class="list-group-item">China</li>
             </div>
             <div class="card-footer">
-                USD 1400
+                USD 1400 per person
             </div>
             <div class="text-center">
                 <label class="form-check-label" for="asia">
@@ -31,7 +31,7 @@
                 <li class="list-group-item">Sweden</li>
             </div>
             <div class="card-footer">
-                USD 11000
+                USD 11000 per person
             </div>
             <div class="text-center">
                 <label class="form-check-label" for="europe">
@@ -52,7 +52,7 @@
                 <li class="list-group-item">USA</li>
             </div>
             <div class="card-footer">
-                USD 25000
+                USD 25000 per person
             </div>
             <div class="text-center">
                 <label class="form-check-label" for="na">
