@@ -8,6 +8,7 @@ $(document).ready(function () {
   $(".form-control").blur(function () {
     if (validateForm()) {
       $(this).css({ background: "white" });
+      $("#wrong-email").hide();
     } else {
       $(this).css({ background: "#FED5D5" });
       $("#wrong-email").show();
