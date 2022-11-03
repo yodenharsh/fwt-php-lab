@@ -4,10 +4,10 @@ The object of this project (?) is to make a website with a fully functional fron
 
 It makes heavy use of bootstrap, jQuery, PHP and MySQL.
 
-- [js](###js)
-- [layout](###layout)
-- [styles](###styles)
-- [Root folder](###root-folder)
+- [js](#js)
+- [layout](#layout)
+- [styles](#styles)
+- [Root folder](#root-folder)
 
 ## Folder structure
 
