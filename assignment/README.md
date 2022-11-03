@@ -38,13 +38,13 @@ Also contains `upload_png.php` which contains the layout and input options to le
 Contains `index.css` which is contains the custom styles used in the index page, signup page and the header.
 <br/><br><br/>
 Contains `new_trips.css` which contains a single class `.error-box` used by the error dialog in the booking page.
-<br/><br><br/></br></br>
+<br/><br><br/>
 
 ### `uploads`
 
 All the file uploads are physically stored here.
 
-<br/><br><br/><br/><br/>
+<br/><br><br/>
 
 ### Root folder
 
