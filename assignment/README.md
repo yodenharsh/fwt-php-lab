@@ -4,6 +4,7 @@ The objective of this project (?) is to make a website with a fully functional f
 
 It makes heavy use of bootstrap, jQuery, PHP and MySQL.
 
+- [Database Structure](#database-structure)
 - [js](#js)
 - [layout](#layout)
 - [styles](#styles)
