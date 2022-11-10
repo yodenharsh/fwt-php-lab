@@ -11,6 +11,11 @@ It makes heavy use of bootstrap, jQuery, PHP and MySQL.
 
 ## Folder structure
 
+### Database Structure
+
+- user_details - Two fields: email and password where email is PRIMARY KEY. Password is encrypted with MD5 and then stored.
+- trip_details - Six fields: tripID, user_email, year, people, cost and package where tripID is the PRIMARY KEY.
+
 ### `js`
 
 Contains `login.js`
