@@ -1,6 +1,6 @@
 # Harsh's Book a Trip Website
 
-The object of this project (?) is to make a website with a fully functional front-end, back-end and database which offers a smooth experience to the user to let them signup, signin, choose book trips and view their booked trips.
+The objective of this project (?) is to make a website with a fully functional front-end, back-end and database which offers a smooth experience to the user to let them signup, signin, choose book trips and view their booked trips.
 
 It makes heavy use of bootstrap, jQuery, PHP and MySQL.
 
